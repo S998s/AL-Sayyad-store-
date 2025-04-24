@@ -171,6 +171,24 @@ footer {
     flex-direction: column;
     gap: 0.5rem;
   }
+  .whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background 0.3s;
+  z-index: 1000;
+}
+
+.whatsapp-button:hover {
+  background: #1ebe5d;
+}
 
   .product img {
     height: 150px;
