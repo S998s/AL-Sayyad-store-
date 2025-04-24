@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>الصياد للصناعة والتجارة</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>الصياد للصناعة والتجارة</h1>
+    <nav>
+      <ul>
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#products">المنتجات</a></li>
+        <li><a href="#contact">اتصل بنا</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="section" id="products">
+    <h2>المنتجات</h2>
+    <div class="products" id="productList"></div>
+  </section>
+
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="details" id="productDetails"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>جميع الحقوق محفوظة &copy; الصياد 2025</p>
+  </footer>
+
+  <a href="https://wa.me/970597300631" class="whatsapp-button" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    تواصل واتساب
+  </a>
+
+  <script>
+    const alsayyadProducts = [
+      { name: "لبن", image: "placeholder.jpg", description: "منتج بلاستيكي من صنف لبن" },
+      { name: "حصالات", image: "placeholder.jpg", description: "منتج بلاستيكي من صنف حصالات" },
+      { name: "محكان زيت كيبر", image: "placeholder.jpg", description: "منتج بلاستيكي من صنف محكان زيت كيبر" },
+      { name: "10لتر شفاف", image: "10.jpg", description: "منتج بلاستيكي من صنف 10لتر شفاف" },
+      { name: "12لتر ملون", image: "12.jpg", description: "منتج بلاستيكي من صنف 12لتر ملون" },
+      { name: "سطل دعسة  كبير", image: "placeholder.jpg", description: "منتج بلاستيكي من صنف سطل دعسة  كبير" },
+      { name: "قوار ورد 20سم", image: "placeholder.jpg", description: "منتج بلاستيكي من صنف قوار ورد 20سم" },
+      { name: "طقم طشط كبير", image: "placeholder.jpg", description: "منتج بلاستيكي من صنف طقم طشط كبير" },
+      { name: "ابريق زيت", image: "placeholder.jpg", description: "منتج بلاستيكي من صنف ابريق زيت" },
+      { name: "براد ماء بلاستيك", image: "placeholder.jpg", description: "منتج بلاستيكي من صنف براد ماء بلاستيك" }
+    ];
+
+    localStorage.setItem('alsayyadProducts', JSON.stringify(alsayyadProducts));
+
+    function renderProducts() {
+      const container = document.getElementById("productList");
+      container.innerHTML = "";
+
+      if (alsayyadProducts.length === 0) {
+        container.innerHTML = "<p>لا توجد منتجات متاحة حالياً.</p>";
+        return;
+      }
+
+      alsayyadProducts.forEach((product, index) => {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `
+          <img src="images/${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+        `;
+        div.onclick = () => openModal(index);
+        container.appendChild(div);
+      });
+    }
+
+    function openModal(index) {
+      const product = alsayyadProducts[index];
+      const modal = document.getElementById("productModal");
+      const details = document.getElementById("productDetails");
+
+      details.innerHTML = `
+        <img src="images/${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <form id="orderForm">
+          <input type="text" placeholder="اسمك" required>
+          <input type="tel" placeholder="رقم الهاتف" required>
+          <textarea placeholder="تفاصيل الطلب" rows="4"></textarea>
+          <button type="submit">إرسال الطلب</button>
+        </form>
+      `;
+
+      document.getElementById("orderForm").onsubmit = function(e) {
+        e.preventDefault();
+        alert("تم إرسال الطلب بنجاح!");
+        closeModal();
+      };
+
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("productModal").style.display = "none";
+    }
+
+    window.onclick = function(e) {
+      if (e.target.classList.contains("modal")) {
+        closeModal();
+      }
+    }
+
+    renderProducts();
+  </script>
+</body>
+</html>
