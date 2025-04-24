@@ -406,4 +406,107 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الصياد للصناعة والتجارة</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: 'Arial', sans-serif; margin: 0; background: #f5f5f5; color: #333; }
+    header { background: #444; color: #fff; padding: 1rem; text-align: center; }
+    nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 1rem; }
+    nav a { color: #fff; text-decoration: none; }
+    .section { padding: 2rem; background: #f8f8f8; margin: 1rem 0; }
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .product { background: #fff; border: 1px solid #ccc; padding: 1rem; text-align: center; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+    .product:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .product img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+    .modal { display: none; position: fixed; top: 0; right: 0; left: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; z-index: 1000; }
+    .modal-content { background: white; border-radius: 10px; max-width: 600px; width: 90%; padding: 2rem; position: relative; }
+    .modal-content img { width: 100%; height: auto; border-radius: 10px; }
+    .close { position: absolute; top: 1rem; left: 1rem; font-size: 1.5rem; cursor: pointer; }
+    .details h3 { margin: 1rem 0 0.5rem; }
+    .details p { margin-bottom: 1rem; color: #666; }
+    .details form { display: flex; flex-direction: column; gap: 0.5rem; }
+    .details input, .details textarea, .details button { padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px; }
+    .details button { background: #2196f3; color: white; border: none; cursor: pointer; font-weight: bold; }
+    footer { background: #444; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>الصياد للصناعة والتجارة</h1>
+    <nav>
+      <ul>
+        <li><a href="#products">المنتجات</a></li>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#contact">اتصل بنا</a></li>
+      </ul>
+    </nav>
+  </header>  <section class="section" id="products">
+    <h2>المنتجات</h2>
+    <div class="products">
+      <!-- بداية المنتجات المدخلة تلقائيًا -->
+      <div class="product" onclick="showDetails('لبن', 'images/Photoroom-٢٠٢٤٠٥٠٥_١٤٥٦٣٢.jpg', 'منتج بلاستيكي من صنف لبن')">
+        <img src="images/Photoroom-٢٠٢٤٠٥٠٥_١٤٥٦٣٢.jpg" alt="لبن">
+        <h3>لبن</h3>
+      </div>
+      <div class="product" onclick="showDetails('محكان زيت كيبر', 'images/10.jpg', 'منتج بلاستيكي من صنف محكان زيت كيبر')">
+        <img src="images/10.jpg" alt="محكان زيت كيبر">
+        <h3>محكان زيت كيبر</h3>
+      </div>
+      <div class="product" onclick="showDetails('غطاء بخاخ مروحة', 'images/21.jpg', 'منتج بلاستيكي من صنف غطاء بخاخ مروحة')">
+        <img src="images/21.jpg" alt="غطاء بخاخ مروحة">
+        <h3>غطاء بخاخ مروحة</h3>
+      </div>
+      <!-- المزيد من المنتجات هنا بنفس النمط -->
+    </div>
+  </section>  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="">
+      <div class="details">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+        <form>
+          <label>الاسم:</label>
+          <input type="text" placeholder="اسمك" required>
+          <label>رقم الهاتف:</label>
+          <input type="text" placeholder="رقم التواصل" required>
+          <label>الكمية المطلوبة:</label>
+          <input type="number" placeholder="كمية" min="1" required>
+          <button type="submit">طلب المنتج</button>
+        </form>
+      </div>
+    </div>
+  </div>  <section class="section" id="about">
+    <h2>من نحن</h2>
+    <p>الصياد للصناعة والتجارة متخصصون في تصنيع وتوزيع المنتجات البلاستيكية بجودة عالية وتصاميم متنوعة لتلبية احتياجات السوق المحلي.</p>
+  </section>  <section class="section" id="contact">
+    <h2>اتصل بنا</h2>
+    <form>
+      <label for="name">الاسم:</label>
+      <input type="text" id="name" name="name" required><label for="phone">رقم الهاتف:</label>
+  <input type="text" id="phone" name="phone" required>
 
+  <label for="message">رسالتك:</label>
+  <textarea id="message" name="message" rows="4" required></textarea>
+
+  <button type="submit">إرسال</button>
+</form>
+
+  </section>  <footer>
+    <p>© 2025 الصياد للصناعة والتجارة. جميع الحقوق محفوظة.</p>
+  </footer>  <script>
+    function showDetails(title, image, description) {
+      document.getElementById("modalTitle").innerText = title;
+      document.getElementById("modalImage").src = image;
+      document.getElementById("modalDescription").innerText = description;
+      document.getElementById("productModal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("productModal").style.display = "none";
+    }
+  </script></body>
+</html>
