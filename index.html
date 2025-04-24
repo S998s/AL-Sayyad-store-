@@ -1,61 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>الصياد للصناعة والتجارة</title>
   <link rel="stylesheet" href="style.css">
-  <style> 
-    body { font-family: 'Arial', sans-serif; margin: 0; background: #f5f5f5; color: #333; }
-    header { background: #444; color: #fff; padding: 1rem; text-align: center; }
-    nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 1rem; }
-    nav a { color: #fff; text-decoration: none; }
-    .section { padding: 2rem; background: #f8f8f8; margin: 1rem 0; }
-    .filter { margin-bottom: 1rem; text-align: center; }
-    .filter button { margin: 0.2rem; padding: 0.5rem 1rem; border: none; background: #ccc; cursor: pointer; border-radius: 5px; }
-    .filter button.active { background: #444; color: #fff; }
-    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-    .product { background: #fff; border: 1px solid #ccc; padding: 1rem; text-align: center; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
-    .product:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    .product img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
-    .modal { display: none; position: fixed; top: 0; right: 0; left: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; z-index: 1000; }
-    .modal-content { background: white; border-radius: 10px; max-width: 600px; width: 90%; padding: 2rem; position: relative; }
-    .modal-content img { width: 100%; height: auto; border-radius: 10px; }
-    .close { position: absolute; top: 1rem; left: 1rem; font-size: 1.5rem; cursor: pointer; }
-    .details h3 { margin: 1rem 0 0.5rem; }
-    .details p { margin-bottom: 1rem; color: #666; }
-    .details form { display: flex; flex-direction: column; gap: 0.5rem; }
-    .details input, .details textarea, .details button { padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px; }
-    .details button { background: #2196f3; color: white; border: none; cursor: pointer; font-weight: bold; }
-    footer { background: #444; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
-  .whatsapp-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25d366;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: background 0.3s;
-  z-index: 1000;
-}
-
-.whatsapp-button:hover {
-  background: #1ebe5d;
-}
-  </style>
-  
 </head>
 <body>
   <header>
     <h1>الصياد للصناعة والتجارة</h1>
     <nav>
       <ul>
+        <li><a href="#">الرئيسية</a></li>
         <li><a href="#products">المنتجات</a></li>
-        <li><a href="#about">من نحن</a></li>
         <li><a href="#contact">اتصل بنا</a></li>
       </ul>
     </nav>
@@ -63,95 +21,73 @@
 
   <section class="section" id="products">
     <h2>المنتجات</h2>
-    <div class="filter">
-      <button class="active" onclick="filterProducts('all')">الكل</button>
-      <button onclick="filterProducts('محكان زيت')">محكان زيت</button>
-      <button onclick="filterProducts('أباريق')">أباريق</button>
-      <button onclick="filterProducts('حصالات')">حصالات</button>
-    </div>
-    <div class="products">
-      <div class="product" data-category="أباريق" onclick="showDetails('لبن', 'images/Photoroom-٢٠٢٤٠٥٠٥_١٤٥٦٣٢.jpg', 'ابريق بلاستيكي بجودة عالية.')">
-        <img src="images/Photoroom-٢٠٢٤٠٥٠٥_١٤٥٦٣٢.jpg" alt="لبن">
-        <h3>لبن</h3>
-        <p>تصنيف: أباريق</p>
-      </div>
-      <!-- باقي المنتجات يمكن نسخها بنفس الطريقة -->
-    </div>
+    <div class="products" id="productList"></div>
   </section>
 
   <div class="modal" id="productModal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
-      <img id="modalImage" src="" alt="">
-      <div class="details">
-        <h3 id="modalTitle"></h3>
-        <p id="modalDescription"></p>
-        <form>
-          <label>الاسم:</label>
-          <input type="text" placeholder="اسمك" required>
-          <label>رقم الهاتف:</label>
-          <input type="text" placeholder="رقم التواصل" required>
-          <label>الكمية المطلوبة:</label>
-          <input type="number" placeholder="كمية" min="1" required>
-          <button type="submit">طلب المنتج</button>
-        </form>
-      </div>
+      <div class="details" id="productDetails"></div>
     </div>
   </div>
 
-  <section class="section" id="about">
-    <h2>من نحن</h2>
-    <p>الصياد للصناعة والتجارة متخصصون في تصنيع وتوزيع المنتجات البلاستيكية بجودة عالية وتصاميم متنوعة لتلبية احتياجات السوق المحلي.</p>
-  </section>
-
-  <section class="section" id="contact">
-    <h2>اتصل بنا</h2>
-    <form>
-      <label for="name">الاسم:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="phone">رقم الهاتف:</label>
-      <input type="text" id="phone" name="phone" required>
-
-      <label for="message">رسالتك:</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
-
-      <button type="submit">إرسال</button>
-    </form>
-  </section>
-
   <footer>
-    <p>© 2025 الصياد للصناعة والتجارة. جميع الحقوق محفوظة.</p>
+    <p>جميع الحقوق محفوظة &copy; الصياد 2025</p>
   </footer>
 
-  <script>
-    function filterProducts(category) {
-      const buttons = document.querySelectorAll(".filter button");
-      buttons.forEach(btn => btn.classList.remove("active"));
-      event.target.classList.add("active");
+  
+<a href="https://wa.me/970597300631" class="whatsapp-button" target="_blank">
+  تواصل واتساب
+</a>
 
-      const products = document.querySelectorAll(".product");
-      products.forEach(product => {
-        if (category === 'all' || product.dataset.category === category) {
-          product.style.display = 'block';
-        } else {
-          product.style.display = 'none';
-        }
+
+  <script>
+    const products = JSON.parse(localStorage.getItem('alsayyadProducts') || '[]');
+
+    function renderProducts() {
+      const container = document.getElementById("productList");
+      container.innerHTML = "";
+      products.forEach((product, index) => {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `
+          <img src="images/${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+        `;
+        div.onclick = () => openModal(index);
+        container.appendChild(div);
       });
     }
 
-    function showDetails(title, image, description) {
-      document.getElementById("modalTitle").innerText = title;
-      document.getElementById("modalImage").src = image;
-      document.getElementById("modalDescription").innerText = description;
-      document.getElementById("productModal").style.display = "flex";
+    function openModal(index) {
+      const product = products[index];
+      const modal = document.getElementById("productModal");
+      const details = document.getElementById("productDetails");
+      details.innerHTML = `
+        <img src="images/${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <form>
+          <input type="text" placeholder="اسمك" required>
+          <input type="tel" placeholder="رقم الهاتف" required>
+          <textarea placeholder="تفاصيل الطلب" rows="4"></textarea>
+          <button type="submit">إرسال الطلب</button>
+        </form>
+      `;
+      modal.style.display = "flex";
     }
 
     function closeModal() {
       document.getElementById("productModal").style.display = "none";
     }
+
+    window.onclick = function(e) {
+      if (e.target.classList.contains("modal")) {
+        closeModal();
+      }
+    }
+
+    renderProducts();
   </script>
-</body> <a href="https://wa.me/970 597300631" class="whatsapp-button" target="_blank">
-  تواصل واتساب
-</a>
+</body>
 </html>
