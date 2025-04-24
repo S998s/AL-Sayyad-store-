@@ -1,186 +1,104 @@
-
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الصياد للصناعة وتجارة</title>
+  <title>الصياد للصناعة والتجارة</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #1e90ff;
-      color: white;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 36px;
-      font-weight: bold;
-    }
-    header p {
-      font-size: 20px;
-    }
-    nav {
-      background-color: #333;
-      overflow: hidden;
-      font-size: 18px;
-    }
-    nav a {
-      float: right;
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 16px 20px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-    nav a:hover {
-      background-color: #ddd;
-      color: black;
-    }
-    .container {
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .section {
-      background: white;
-      margin-bottom: 40px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    .section h2 {
-      color: #1e90ff;
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-    .section p {
-      font-size: 18px;
-      color: #555;
-    }
-    footer {
-      background-color: #1e90ff;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-    }
-    .footer-text {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-    .social-buttons {
-      margin-top: 20px;
-    }
-    .social-buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 14px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    .whatsapp {
-      background-color: #25D366;
-    }
-    .whatsapp:hover {
-      background-color: #128C7E;
-    }
-    .facebook {
-      background-color: #3b5998;
-    }
-    .facebook:hover {
-      background-color: #2d4373;
-    }
-    .locations {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .location {
-      width: 30%;
-      background: #f1f1f1;
-      padding: 20px;
-      margin: 10px;
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
-    .location h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-      color: #333;
-    }
+    body { font-family: 'Arial', sans-serif; margin: 0; background: #f5f5f5; color: #333; }
+    header { background: #444; color: #fff; padding: 1rem; text-align: center; }
+    nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 1rem; }
+    nav a { color: #fff; text-decoration: none; }
+    .section { padding: 2rem; background: #f8f8f8; margin: 1rem 0; }
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .product { background: #fff; border: 1px solid #ccc; padding: 1rem; text-align: center; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
+    .product:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .product img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; }
+    .modal { display: none; position: fixed; top: 0; right: 0; left: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; z-index: 1000; }
+    .modal-content { background: white; border-radius: 10px; max-width: 600px; width: 90%; padding: 2rem; position: relative; }
+    .modal-content img { width: 100%; height: auto; border-radius: 10px; }
+    .close { position: absolute; top: 1rem; left: 1rem; font-size: 1.5rem; cursor: pointer; }
+    .details h3 { margin: 1rem 0 0.5rem; }
+    .details p { margin-bottom: 1rem; color: #666; }
+    .details form { display: flex; flex-direction: column; gap: 0.5rem; }
+    .details input, .details textarea, .details button { padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px; }
+    .details button { background: #2196f3; color: white; border: none; cursor: pointer; font-weight: bold; }
+    footer { background: #444; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
   </style>
 </head>
 <body>
   <header>
-    <h1>الصياد للصناعة وتجارة</h1>
-    <p>متجر متخصص ببيع الصناعات البلاستيكية بجميع أنواعها</p>
-  </header>
-
-  <nav>
-    <a href="#other">منتجات أخرى</a>
-    <a href="#vases">قوارير الورد</a>
-    <a href="#gallons">الجالونات</a>
-    <a href="#jars">المرتبانات</a>
-  </nav>
-
-  <div class="container">
-    <div class="section" id="jars">
-      <h2>المرتبانات بجميع الأحجام</h2>
-      <p>مجموعة متنوعة من المرتبانات البلاستيكية للاستخدامات المختلفة.</p>
+    <h1>الصياد للصناعة والتجارة</h1>
+    <nav>
+      <ul>
+        <li><a href="#products">المنتجات</a></li>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#contact">اتصل بنا</a></li>
+      </ul>
+    </nav>
+  </header>  <section class="section" id="products">
+    <h2>المنتجات</h2>
+    <div class="products">
+      <!-- بداية المنتجات المدخلة تلقائيًا -->
+      <div class="product" onclick="showDetails('لبن', 'images/Photoroom-٢٠٢٤٠٥٠٥_١٤٥٦٣٢.jpg', 'منتج بلاستيكي من صنف لبن')">
+        <img src="images/Photoroom-٢٠٢٤٠٥٠٥_١٤٥٦٣٢.jpg" alt="لبن">
+        <h3>لبن</h3>
+      </div>
+      <div class="product" onclick="showDetails('محكان زيت كيبر', 'images/10.jpg', 'منتج بلاستيكي من صنف محكان زيت كيبر')">
+        <img src="images/10.jpg" alt="محكان زيت كيبر">
+        <h3>محكان زيت كيبر</h3>
+      </div>
+      <div class="product" onclick="showDetails('غطاء بخاخ مروحة', 'images/21.jpg', 'منتج بلاستيكي من صنف غطاء بخاخ مروحة')">
+        <img src="images/21.jpg" alt="غطاء بخاخ مروحة">
+        <h3>غطاء بخاخ مروحة</h3>
+      </div>
+      <!-- المزيد من المنتجات هنا بنفس النمط -->
     </div>
-
-    <div class="section" id="gallons">
-      <h2>الجالونات بجميع الأحجام</h2>
-      <p>جالونات عالية الجودة مناسبة للتخزين والنقل.</p>
-    </div>
-
-    <div class="section" id="vases">
-      <h2>قوارير الورد بجميع الأحجام</h2>
-      <p>تصاميم رائعة من قوارير الورد تناسب جميع الأذواق.</p>
-    </div>
-
-    <div class="section" id="other">
-      <h2>منتجات أخرى</h2>
-      <p>منتجات بلاستيكية متنوعة حسب الحاجة.</p>
-    </div>
-
-    <div class="section" id="locations">
-      <h2>مواقعنا</h2>
-      <div class="locations">
-        <div class="location">
-          <h3>جنين - بير الباشا</h3>
-          <p>شارع نابلس - خلف مسجد الفاروق</p>
-        </div>
-        <div class="location">
-          <h3>جنين - مدخل تكسيات</h3>
-          <p>نابلس - مقابل أزياء العبوشي</p>
-        </div>
-        <div class="location">
-          <h3>جنين - ألمانية</h3>
-          <p>بجانب محل الأثاث المستعمل</p>
-        </div>
+  </section>  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="">
+      <div class="details">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+        <form>
+          <label>الاسم:</label>
+          <input type="text" placeholder="اسمك" required>
+          <label>رقم الهاتف:</label>
+          <input type="text" placeholder="رقم التواصل" required>
+          <label>الكمية المطلوبة:</label>
+          <input type="number" placeholder="كمية" min="1" required>
+          <button type="submit">طلب المنتج</button>
+        </form>
       </div>
     </div>
-  </div>
+  </div>  <section class="section" id="about">
+    <h2>من نحن</h2>
+    <p>الصياد للصناعة والتجارة متخصصون في تصنيع وتوزيع المنتجات البلاستيكية بجودة عالية وتصاميم متنوعة لتلبية احتياجات السوق المحلي.</p>
+  </section>  <section class="section" id="contact">
+    <h2>اتصل بنا</h2>
+    <form>
+      <label for="name">الاسم:</label>
+      <input type="text" id="name" name="name" required><label for="phone">رقم الهاتف:</label>
+  <input type="text" id="phone" name="phone" required>
 
-  <footer>
-    <div class="footer-text">&copy; 2025 الصياد للصناعة وتجارة. جميع الحقوق محفوظة.</div>
-    <div class="footer-text">للتواصل: 0597300631</div>
-    <div class="social-buttons">
-      <a class="whatsapp" href="https://wa.me/970597300631" target="_blank">راسلنا عبر واتساب</a>
-      <a class="facebook" href="https://www.facebook.com/share/16Ts6AfaVu/" target="_blank">تابعنا على فيسبوك</a>
-    </div>
-  </footer>
-</body>
+  <label for="message">رسالتك:</label>
+  <textarea id="message" name="message" rows="4" required></textarea>
+
+  <button type="submit">إرسال</button>
+</form>
+
+  </section>  <footer>
+    <p>© 2025 الصياد للصناعة والتجارة. جميع الحقوق محفوظة.</p>
+  </footer>  <script>
+    function showDetails(title, image, description) {
+      document.getElementById("modalTitle").innerText = title;
+      document.getElementById("modalImage").src = image;
+      document.getElementById("modalDescription").innerText = description;
+      document.getElementById("productModal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("productModal").style.display = "none";
+    }
+  </script></body>
 </html>
