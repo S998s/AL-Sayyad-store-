@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,9 @@
     nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 1rem; }
     nav a { color: #fff; text-decoration: none; }
     .section { padding: 2rem; background: #f8f8f8; margin: 1rem 0; }
+    .filter { margin-bottom: 1rem; text-align: center; }
+    .filter button { margin: 0.2rem; padding: 0.5rem 1rem; border: none; background: #ccc; cursor: pointer; border-radius: 5px; }
+    .filter button.active { background: #444; color: #fff; }
     .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
     .product { background: #fff; border: 1px solid #ccc; padding: 1rem; text-align: center; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; }
     .product:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
@@ -36,25 +40,27 @@
         <li><a href="#contact">اتصل بنا</a></li>
       </ul>
     </nav>
-  </header>  <section class="section" id="products">
+  </header>
+
+  <section class="section" id="products">
     <h2>المنتجات</h2>
+    <div class="filter">
+      <button class="active" onclick="filterProducts('all')">الكل</button>
+      <button onclick="filterProducts('محكان زيت')">محكان زيت</button>
+      <button onclick="filterProducts('أباريق')">أباريق</button>
+      <button onclick="filterProducts('حصالات')">حصالات</button>
+    </div>
     <div class="products">
-      <!-- بداية المنتجات المدخلة تلقائيًا -->
-      <div class="product" onclick="showDetails('لبن', 'images/Photoroom-٢٠٢٤٠٥٠٥_١٤٥٦٣٢.jpg', 'منتج بلاستيكي من صنف لبن')">
+      <div class="product" data-category="أباريق" onclick="showDetails('لبن', 'images/Photoroom-٢٠٢٤٠٥٠٥_١٤٥٦٣٢.jpg', 'ابريق بلاستيكي بجودة عالية.')">
         <img src="images/Photoroom-٢٠٢٤٠٥٠٥_١٤٥٦٣٢.jpg" alt="لبن">
         <h3>لبن</h3>
+        <p>تصنيف: أباريق</p>
       </div>
-      <div class="product" onclick="showDetails('محكان زيت كيبر', 'images/10.jpg', 'منتج بلاستيكي من صنف محكان زيت كيبر')">
-        <img src="images/10.jpg" alt="محكان زيت كيبر">
-        <h3>محكان زيت كيبر</h3>
-      </div>
-      <div class="product" onclick="showDetails('غطاء بخاخ مروحة', 'images/21.jpg', 'منتج بلاستيكي من صنف غطاء بخاخ مروحة')">
-        <img src="images/21.jpg" alt="غطاء بخاخ مروحة">
-        <h3>غطاء بخاخ مروحة</h3>
-      </div>
-      <!-- المزيد من المنتجات هنا بنفس النمط -->
+      <!-- باقي المنتجات يمكن نسخها بنفس الطريقة -->
     </div>
-  </section>  <div class="modal" id="productModal">
+  </section>
+
+  <div class="modal" id="productModal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
       <img id="modalImage" src="" alt="">
@@ -72,33 +78,59 @@
         </form>
       </div>
     </div>
-  </div>  <section class="section" id="about">
+  </div>
+
+  <section class="section" id="about">
     <h2>من نحن</h2>
     <p>الصياد للصناعة والتجارة متخصصون في تصنيع وتوزيع المنتجات البلاستيكية بجودة عالية وتصاميم متنوعة لتلبية احتياجات السوق المحلي.</p>
-  </section>  <section class="section" id="contact">
+  </section>
+
+  <section class="section" id="contact">
     <h2>اتصل بنا</h2>
     <form>
       <label for="name">الاسم:</label>
-      <input type="text" id="name" name="name" required><label for="phone">رقم الهاتف:</label>
-  <input type="text" id="phone" name="phone" required>
+      <input type="text" id="name" name="name" required>
 
-  <label for="message">رسالتك:</label>
-  <textarea id="message" name="message" rows="4" required></textarea>
+      <label for="phone">رقم الهاتف:</label>
+      <input type="text" id="phone" name="phone" required>
 
-  <button type="submit">إرسال</button>
-</form>
+      <label for="message">رسالتك:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
 
-  </section>  <footer>
+      <button type="submit">إرسال</button>
+    </form>
+  </section>
+
+  <footer>
     <p>© 2025 الصياد للصناعة والتجارة. جميع الحقوق محفوظة.</p>
-  </footer>  <script>
+  </footer>
+
+  <script>
+    function filterProducts(category) {
+      const buttons = document.querySelectorAll(".filter button");
+      buttons.forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+
+      const products = document.querySelectorAll(".product");
+      products.forEach(product => {
+        if (category === 'all' || product.dataset.category === category) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    }
+
     function showDetails(title, image, description) {
       document.getElementById("modalTitle").innerText = title;
       document.getElementById("modalImage").src = image;
       document.getElementById("modalDescription").innerText = description;
       document.getElementById("productModal").style.display = "flex";
     }
+
     function closeModal() {
       document.getElementById("productModal").style.display = "none";
     }
-  </script></body>
+  </script>
+</body>
 </html>
